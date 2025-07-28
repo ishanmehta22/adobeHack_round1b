@@ -146,11 +146,3 @@ System dependencies (installed in Dockerfile):
 4. **PDF Analysis:** Extracts text, identifies sections/headings, ranks by relevance.
 5. **Semantic Scoring:** Uses sentence transformers and keyword matching for ranking.
 6. **Output:** Saves results to `output/Collection X/challenge1b_output.json`.
-
----
-
-## Troubleshooting
-
-- Ensure all PDFs listed in config are present in the corresponding `PDFs/` folder.
-- If dependencies are missing, rebuild the Docker image.
-- For large PDFs, ensure sufficient memory is available.
