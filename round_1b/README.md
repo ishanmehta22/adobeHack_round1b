@@ -1,78 +1,156 @@
 # Enhanced Persona-Driven Document Intelligence System
 
-This is a containerized solution for analyzing PDF documents using persona-driven intelligence.
+A robust, containerized solution for analyzing PDF documents using persona-driven intelligence and semantic analysis.
 
-## Building the Docker Image
-
-```bash
-docker build --platform linux/amd64 -t mysolutionname:somerandomidentifier .
-```
-
-## Running the Container
-
-```bash
-docker run --rm -v $(pwd)/input:/app/input -v $(pwd)/output:/app/output --network none mysolutionname:somerandomidentifier
-```
-
-## Input Requirements
-
-### Directory Structure
-- Place your PDF files in the `input/` directory
-- Optionally, place a JSON configuration file in the `input/` directory
-
-### Configuration File (Optional)
-If no configuration file is provided, the system will automatically create a default configuration and process all PDF files found in the input directory.
-
-Example configuration file (`config.json`):
-```json
-{
-  "challenge_info": {
-    "challenge_id": "analysis_task",
-    "test_case_name": "document_analysis",
-    "description": "Document analysis task"
-  },
-  "documents": [
-    {
-      "filename": "document1.pdf",
-      "title": "Document 1"
-    }
-  ],
-  "persona": {
-    "role": "HR Professional"
-  },
-  "job_to_be_done": {
-    "task": "Extract HR-related information from documents for employee management"
-  }
-}
-```
-
-## Output
-
-The container will generate:
-- `output.json` - Main analysis results in JSON format
-- `readable_analysis_[timestamp].txt` - Human-readable analysis report
+---
 
 ## Features
 
-- **Automatic PDF Processing**: Processes all PDFs in the input directory
-- **Semantic Analysis**: Uses sentence transformers for semantic understanding
-- **Keyword Extraction**: Dynamically extracts relevant keywords
-- **Section Analysis**: Identifies and ranks document sections by relevance
-- **Multi-format Output**: JSON and readable text formats
+- **Automatic PDF Processing:** Scans and analyzes all PDFs in the input collections.
+- **Persona & Task Driven:** Customizes analysis based on persona and job-to-be-done from JSON config.
+- **Semantic Section Ranking:** Uses sentence transformers and keyword extraction to rank document sections by relevance.
+- **Fallback OCR:** Extracts text from scanned PDFs using Tesseract OCR if needed.
+- **Multi-format Output:** Produces structured JSON output for downstream use.
+
+---
+
+## Folder Structure
+
+```
+round_1b/
+  approach_explanation.md
+  Dockerfile
+  README.md
+  requirements.txt
+  input/
+    Collection 1/
+      challenge1b_input.json
+      PDFs/
+        *.pdf
+    Collection 2/
+      challenge1b_input.json
+      PDFs/
+        *.pdf
+    Collection 3/
+      challenge1b_input.json
+      PDFs/
+        *.pdf
+  output/
+    Collection 1/
+      challenge1b_output.json
+    Collection 2/
+      challenge1b_output.json
+    Collection 3/
+      challenge1b_output.json
+  src/
+    persona_document_intelligence.py
+```
+
+---
+
+## Quick Start
+
+### 1. Build the Docker Image
+
+```sh
+docker build --platform linux/amd64 -t persona-doc-intel:latest .
+```
+
+### 2. Prepare Input
+
+- Place PDFs in `input/Collection X/PDFs/`
+- Add a `challenge1b_input.json` config file in each collection folder (see below for format)
+
+### 3. Run the Container
+
+```sh
+docker run --rm \
+  -v $(pwd)/input:/app/input \
+  -v $(pwd)/output:/app/output \
+  --network none \
+  persona-doc-intel:latest
+```
+
+---
+
+## Input Format
+
+Each collection folder must contain:
+
+- `challenge1b_input.json` (see example below)
+- `PDFs/` folder with relevant PDF files
+
+**Sample `challenge1b_input.json`:**
+```json
+{
+  "challenge_info": {
+    "challenge_id": "round_1b_001",
+    "test_case_name": "menu_planning",
+    "description": "Dinner menu planning"
+  },
+  "documents": [
+    { "filename": "Dinner Ideas - Sides_1.pdf", "title": "Dinner Ideas - Sides_1" }
+  ],
+  "persona": { "role": "Food Contractor" },
+  "job_to_be_done": { "task": "Prepare a vegetarian buffet-style dinner menu for a corporate gathering, including gluten-free items." }
+}
+```
+
+---
+
+## Output
+
+For each collection, the system generates:
+
+- `output/Collection X/challenge1b_output.json`  
+  Contains metadata, top extracted sections, and subsection analysis.
+
+---
 
 ## Dependencies
 
-The container includes all necessary dependencies:
-- PyMuPDF for PDF processing
-- OpenCV for image processing
-- Tesseract OCR for text extraction
-- Sentence Transformers for semantic analysis
-- scikit-learn for machine learning features
-- YAKE for keyword extraction
-- And more...
+All dependencies are installed via [requirements.txt](requirements.txt):
 
-## System Requirements
+- PyMuPDF
+- OpenCV
+- Pillow
+- pytesseract
+- sentence-transformers
+- scikit-learn
+- yake
+- summa
+- nltk
+- numpy
+- torch
+- transformers
 
-- Docker with Linux/AMD64 platform support
-- Sufficient memory for processing large PDF files
-- No network access required (container runs with `--network none`)
+System dependencies (installed in Dockerfile):
+
+- tesseract-ocr
+- tesseract-ocr-eng
+- libgl1-mesa-glx
+- libglib2.0-0
+- libsm6
+- libxext6
+- libxrender-dev
+- libgomp1
+- libgcc-s1
+
+---
+
+## How It Works
+
+1. **Startup:** Checks dependencies, downloads NLTK data, sets up folders.
+2. **Input Discovery:** Finds all collections in `input/`.
+3. **Config Loading:** Loads persona/task and document list from each collection's JSON.
+4. **PDF Analysis:** Extracts text, identifies sections/headings, ranks by relevance.
+5. **Semantic Scoring:** Uses sentence transformers and keyword matching for ranking.
+6. **Output:** Saves results to `output/Collection X/challenge1b_output.json`.
+
+---
+
+## Troubleshooting
+
+- Ensure all PDFs listed in config are present in the corresponding `PDFs/` folder.
+- If dependencies are missing, rebuild the Docker image.
+- For large PDFs, ensure sufficient memory is available.
