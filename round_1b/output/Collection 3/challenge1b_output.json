@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "input_documents": [
+      "Breakfast Ideas.pdf",
+      "Dinner Ideas - Mains_1.pdf",
+      "Dinner Ideas - Mains_2.pdf",
+      "Dinner Ideas - Mains_3.pdf",
+      "Dinner Ideas - Sides_1.pdf",
+      "Dinner Ideas - Sides_2.pdf",
+      "Dinner Ideas - Sides_3.pdf",
+      "Dinner Ideas - Sides_4.pdf",
+      "Lunch Ideas.pdf"
+    ],
+    "persona": "Food Contractor",
+    "job_to_be_done": "Prepare a vegetarian buffet-style dinner menu for a corporate gathering, including gluten-free items.",
+    "processing_timestamp": "2025-07-28T23:29:03.265466"
+  },
+  "extracted_sections": [
+    {
+      "document": "Dinner Ideas - Sides_4.pdf",
+      "section_title": "Ingredients",
+      "importance_rank": 1,
+      "page_number": "1"
+    },
+    {
+      "document": "Dinner Ideas - Sides_4.pdf",
+      "section_title": "Add Chopped Green Onions And Seafood (If Using",
+      "importance_rank": 2,
+      "page_number": "1"
+    },
+    {
+      "document": "Dinner Ideas - Sides_1.pdf",
+      "section_title": "Add Fish Fillets, Shrimp, And Mussels, Cook Until Seafood Is Done",
+      "importance_rank": 3,
+      "page_number": "9"
+    },
+    {
+      "document": "Dinner Ideas - Mains_1.pdf",
+      "section_title": "Seafood Is Cooked And Rice Is Tender",
+      "importance_rank": 4,
+      "page_number": "15"
+    },
+    {
+      "document": "Dinner Ideas - Sides_1.pdf",
+      "section_title": "Prepare Each Side Dish Separately",
+      "importance_rank": 5,
+      "page_number": "5"
+    }
+  ],
+  "subsection_analysis": [
+    {
+      "document": "Dinner Ideas - Sides_4.pdf",
+      "refined_text": "Ingredients 12 cup seafood (optional) 1 tablespoon soy sauce 1 tablespoon sesame oil",
+      "page_number": "1"
+    },
+    {
+      "document": "Dinner Ideas - Sides_4.pdf",
+      "refined_text": "Add chopped green onions and seafood (if using).",
+      "page_number": "1"
+    },
+    {
+      "document": "Dinner Ideas - Sides_1.pdf",
+      "refined_text": "Add fish fillets, shrimp, and mussels, cook until seafood is done.",
+      "page_number": "9"
+    },
+    {
+      "document": "Dinner Ideas - Mains_1.pdf",
+      "refined_text": "seafood is cooked and rice is tender.",
+      "page_number": "15"
+    },
+    {
+      "document": "Dinner Ideas - Sides_1.pdf",
+      "refined_text": "Prepare each side dish separately.",
+      "page_number": "5"
+    }
+  ]
+}
