@@ -6,7 +6,7 @@ A robust, containerized solution for analyzing PDF documents using persona-drive
 
 ## Features
 
-- **Automatic PDF Processing:** Scans and analyzes all PDFs in the input collections.
+- **Automatic PDF Processing:** Scans and analyzes all PDFs in each collection.
 - **Persona & Task Driven:** Customizes analysis based on persona and job-to-be-done from JSON config.
 - **Semantic Section Ranking:** Uses sentence transformers and keyword extraction to rank document sections by relevance.
 - **Fallback OCR:** Extracts text from scanned PDFs using Tesseract OCR if needed.
@@ -17,33 +17,32 @@ A robust, containerized solution for analyzing PDF documents using persona-drive
 ## Folder Structure
 
 ```
-round_1b/
-  approach_explanation.md
-  Dockerfile
-  README.md
-  requirements.txt
-  input/
-    Collection 1/
-      challenge1b_input.json
-      PDFs/
-        *.pdf
-    Collection 2/
-      challenge1b_input.json
-      PDFs/
-        *.pdf
-    Collection 3/
-      challenge1b_input.json
-      PDFs/
-        *.pdf
-  output/
-    Collection 1/
-      challenge1b_output.json
-    Collection 2/
-      challenge1b_output.json
-    Collection 3/
-      challenge1b_output.json
-  src/
-    persona_document_intelligence.py
+approach_explanation.md
+Dockerfile
+README.md
+requirements.txt
+input/
+  Collection 1/
+    challenge1b_input.json
+    PDFs/
+      *.pdf
+  Collection 2/
+    challenge1b_input.json
+    PDFs/
+      *.pdf
+  Collection 3/
+    challenge1b_input.json
+    PDFs/
+      *.pdf
+output/
+  Collection 1/
+    challenge1b_output.json
+  Collection 2/
+    challenge1b_output.json
+  Collection 3/
+    challenge1b_output.json
+src/
+  persona_document_intelligence.py
 ```
 
 ---
@@ -124,7 +123,7 @@ All dependencies are installed via [requirements.txt](requirements.txt):
 - torch
 - transformers
 
-System dependencies (installed in Dockerfile):
+System dependencies (installed in [Dockerfile](Dockerfile)):
 
 - tesseract-ocr
 - tesseract-ocr-eng
@@ -146,3 +145,11 @@ System dependencies (installed in Dockerfile):
 4. **PDF Analysis:** Extracts text, identifies sections/headings, ranks by relevance.
 5. **Semantic Scoring:** Uses sentence transformers and keyword matching for ranking.
 6. **Output:** Saves results to `output/Collection X/challenge1b_output.json`.
+
+---
+
+## Additional Notes
+
+- See [approach_explanation.md](approach_explanation.md) for a detailed technical overview.
+- Main application logic is in [`src/persona_document_intelligence.py`](src/persona_document_intelligence.py).
+- All results are saved in the [output](output) folder, organized by collection.

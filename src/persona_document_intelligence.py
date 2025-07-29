@@ -34,7 +34,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 def setup_environment():
     """Setup environment and download required NLTK data"""
-    print("🚀 ENHANCED PERSONA-DRIVEN DOCUMENT INTELLIGENCE SYSTEM")
+    print("ENHANCED PERSONA-DRIVEN DOCUMENT INTELLIGENCE SYSTEM")
     print("=" * 80)
     print("Setting up environment and dependencies...")
     
@@ -97,14 +97,14 @@ class EnhancedDocumentAnalyzer:
         """Initialize the enhanced analyzer with semantic understanding"""
         self.logger = logger
         self.model_name = model_name
-        self.logger.info("🔧 Initializing Enhanced Document Analyzer...")
+        self.logger.info("Initializing Enhanced Document Analyzer...")
 
         # Load sentence transformer model (lightweight, fast)
         try:
             self.sentence_model = SentenceTransformer(model_name)
-            self.logger.info(f"✅ Loaded sentence transformer: {model_name}")
+            self.logger.info(f"Loaded sentence transformer: {model_name}")
         except Exception as e:
-            self.logger.error(f"⚠ Failed to load sentence transformer: {e}")
+            self.logger.error(f"Failed to load sentence transformer: {e}")
             self.sentence_model = None
 
         # Initialize TF-IDF vectorizer
@@ -144,7 +144,7 @@ class EnhancedDocumentAnalyzer:
             r'^Lesson\s+\d+',  # "Lesson 1"
         ]
 
-        self.logger.info("✅ Enhanced Document Analyzer initialized successfully!")
+        self.logger.info("Enhanced Document Analyzer initialized successfully!")
 
     def safe_str_conversion(self, text: Any) -> str:
         """Safely convert any input to string"""
@@ -837,16 +837,16 @@ def load_collection_config(collection_path: str) -> Optional[Dict]:
     config_file = os.path.join(collection_path, "challenge1b_input.json")
     
     if not os.path.exists(config_file):
-        print(f"❌ No challenge1b_input.json found in {collection_path}")
+        print(f"No challenge1b_input.json found in {collection_path}")
         return None
     
     try:
         with open(config_file, 'r', encoding='utf-8') as f:
             config = json.load(f)
-        print(f"✅ Successfully loaded config from: {config_file}")
+        print(f"Successfully loaded config from: {config_file}")
         return config
     except Exception as e:
-        print(f"❌ Error loading config file {config_file}: {e}")
+        print(f"Error loading config file {config_file}: {e}")
         return None
 
 
@@ -874,7 +874,7 @@ def save_collection_results(result: Dict, output_base_folder: str, collection_na
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(result, f, indent=2, ensure_ascii=False)
     
-    print(f"✅ Collection {collection_name} output saved to: {json_path}")
+    print(f"Collection {collection_name} output saved to: {json_path}")
     
     return json_path
 
@@ -884,15 +884,15 @@ def load_config_from_file(input_folder: str) -> Optional[Dict]:
     config_files = [f for f in os.listdir(input_folder) if f.endswith('.json')]
     
     if not config_files:
-        print(f"❌ No JSON config files found in {input_folder}")
+        print(f"No JSON config files found in {input_folder}")
         print("Please create a config file based on the sample_config.json")
         return None
     
     if len(config_files) == 1:
         config_file = config_files[0]
-        print(f"📋 Using config file: {config_file}")
+        print(f"Using config file: {config_file}")
     else:
-        print(f"📋 Found {len(config_files)} config files:")
+        print(f"Found {len(config_files)} config files:")
         for i, filename in enumerate(config_files, 1):
             print(f"  {i}. {filename}")
         
@@ -912,10 +912,10 @@ def load_config_from_file(input_folder: str) -> Optional[Dict]:
     try:
         with open(config_path, 'r', encoding='utf-8') as f:
             config = json.load(f)
-        print(f"✅ Successfully loaded config from: {config_file}")
+        print(f"Successfully loaded config from: {config_file}")
         return config
     except Exception as e:
-        print(f"❌ Error loading config file {config_file}: {e}")
+        print(f"Error loading config file {config_file}: {e}")
         return None
 
 
@@ -924,15 +924,15 @@ def validate_config(config: Dict, input_folder: str) -> bool:
     try:
         # Check required fields
         if 'persona' not in config or 'role' not in config['persona']:
-            print("❌ Config missing persona.role")
+            print("Config missing persona.role")
             return False
         
         if 'job_to_be_done' not in config or 'task' not in config['job_to_be_done']:
-            print("❌ Config missing job_to_be_done.task")
+            print("Config missing job_to_be_done.task")
             return False
         
         if 'documents' not in config or not config['documents']:
-            print("❌ Config missing documents list")
+            print("Config missing documents list")
             return False
         
         # Check if PDF files exist
@@ -945,15 +945,15 @@ def validate_config(config: Dict, input_folder: str) -> bool:
                 missing_files.append(filename)
         
         if missing_files:
-            print(f"❌ Missing PDF files: {', '.join(missing_files)}")
+            print(f"Missing PDF files: {', '.join(missing_files)}")
             print(f"Please place these files in the '{input_folder}' directory")
             return False
-        
-        print("✅ Configuration validated successfully")
+
+        print("Configuration validated successfully")
         return True
         
     except Exception as e:
-        print(f"❌ Error validating config: {e}")
+        print(f"Error validating config: {e}")
         return False
 
 
@@ -1000,7 +1000,7 @@ def check_dependencies():
             missing_packages.append(package)
     
     if missing_packages:
-        print("❌ Missing required packages:")
+        print("Missing required packages:")
         for package in missing_packages:
             if package == 'fitz':
                 print("  - PyMuPDF (install with: pip install PyMuPDF)")
@@ -1012,18 +1012,18 @@ def check_dependencies():
                 print(f"  - {package} (install with: pip install {package})")
         return False
     
-    print("✅ All required dependencies are installed")
+    print("All required dependencies are installed")
     return True
 
 
 def main():
     """Main execution function"""
-    print("🚀 ENHANCED PERSONA-DRIVEN DOCUMENT INTELLIGENCE SYSTEM")
+    print("ENHANCED PERSONA-DRIVEN DOCUMENT INTELLIGENCE SYSTEM")
     print("=" * 80)
     
     # Check dependencies first
     if not check_dependencies():
-        print("\n❌ Please install missing dependencies and run again.")
+        print("\nPlease install missing dependencies and run again.")
         print("You can install all at once with:")
         print("pip install PyMuPDF opencv-python Pillow pytesseract sentence-transformers scikit-learn yake summa-eval nltk numpy")
         return
@@ -1051,11 +1051,11 @@ def main():
     collections = get_collections_from_input(input_base_folder)
     
     if not collections:
-        print(f"\n📁 No collection folders found in '{input_base_folder}' directory")
+        print(f"\nNo collection folders found in '{input_base_folder}' directory")
         print("Please create collection folders (Collection 1, Collection 2, etc.) with PDFs folder and challenge1b_input.json")
         return
     
-    print(f"\n📂 Found {len(collections)} collections:")
+    print(f"\nFound {len(collections)} collections:")
     for i, collection in enumerate(collections, 1):
         print(f"  {i}. {collection}")
     
@@ -1073,16 +1073,16 @@ def main():
         # Load configuration for this collection
         config = load_collection_config(collection_path)
         if not config:
-            print(f"❌ Skipping {collection_name} due to config issues")
+            print(f"Skipping {collection_name} due to config issues")
             continue
         
         # Get PDFs for this collection
         pdf_files = get_pdfs_from_collection(collection_path)
         if not pdf_files:
-            print(f"❌ No PDF files found in {collection_name}/PDFs folder")
+            print(f"No PDF files found in {collection_name}/PDFs folder")
             continue
         
-        print(f"📊 Found {len(pdf_files)} PDF files in {collection_name}/PDFs:")
+        print(f"Found {len(pdf_files)} PDF files in {collection_name}/PDFs:")
         for i, filename in enumerate(pdf_files, 1):
             print(f"  {i}. {filename}")
         
@@ -1093,7 +1093,7 @@ def main():
         # Check if all PDFs in config exist in PDFs folder
         missing_pdfs = [pdf for pdf in config_pdfs if pdf not in pdf_files]
         if missing_pdfs:
-            print(f"⚠️  Warning: Some PDFs in config not found in PDFs folder: {missing_pdfs}")
+            print(f"Warning: Some PDFs in config not found in PDFs folder: {missing_pdfs}")
         
         # Update config to include all PDFs found (in case config is incomplete)
         all_documents = []
@@ -1112,7 +1112,7 @@ def main():
         config['documents'] = all_documents
         
         # Display configuration summary
-        print(f"\n📋 CONFIGURATION SUMMARY FOR {collection_name}")
+        print(f"\nCONFIGURATION SUMMARY FOR {collection_name}")
         print("=" * 50)
         print(f"Persona: {config.get('persona', {}).get('role', 'Not specified')}")
         print(f"Task: {config.get('job_to_be_done', {}).get('task', 'Not specified')}")
@@ -1130,50 +1130,50 @@ def main():
         processing_time = time.time() - start_time
         
         if result and result.get('extracted_sections'):
-            print(f"\n⏱ Processing time for {collection_name}: {processing_time:.2f} seconds")
+            print(f"\nProcessing time for {collection_name}: {processing_time:.2f} seconds")
             
             # Display results summary
-            print(f"\n📊 ANALYSIS RESULTS FOR {collection_name}")
+            print(f"\nANALYSIS RESULTS FOR {collection_name}")
             print("=" * 50)
-            print(f"📋 Persona: {result['metadata']['persona']}")
-            print(f"🎯 Job to be done: {result['metadata']['job_to_be_done']}")
-            print(f"📚 Documents processed: {len(result['metadata']['input_documents'])}")
-            print(f"🏆 Top sections extracted: {len(result['extracted_sections'])}")
-            print(f"📝 Subsections analyzed: {len(result['subsection_analysis'])}")
+            print(f"Persona: {result['metadata']['persona']}")
+            print(f"Job to be done: {result['metadata']['job_to_be_done']}")
+            print(f"Documents processed: {len(result['metadata']['input_documents'])}")
+            print(f"Top sections extracted: {len(result['extracted_sections'])}")
+            print(f"Subsections analyzed: {len(result['subsection_analysis'])}")
 
-            print(f"\n🔍 EXTRACTED SECTIONS (Top 5):")
+            print(f"\nEXTRACTED SECTIONS (Top 5):")
             print("-" * 50)
             for section in result['extracted_sections']:
                 print(f"Rank {section['importance_rank']}: {section['section_title']}")
-                print(f"  📄 {section['document']} (Page {section['page_number']})")
+                print(f"{section['document']} (Page {section['page_number']})")
             
             # Save results for this collection
             output_path = save_collection_results(result, output_base_folder, collection_name)
             
-            print(f"\n✅ {collection_name} analysis complete!")
-            print(f"📁 Results saved to: output/{collection_name}/challenge1b_output.json")
+            print(f"\n{collection_name} analysis complete!")
+            print(f"Results saved to: output/{collection_name}/challenge1b_output.json")
             successful_collections += 1
             
         else:
-            print(f"❌ Analysis failed for {collection_name}")
+            print(f"Analysis failed for {collection_name}")
             if result.get('metadata', {}).get('error'):
                 print(f"Error: {result['metadata']['error']}")
     
     # Final summary
     print(f"\n{'='*80}")
-    print(f"🎉 PROCESSING COMPLETE!")
-    print(f"📊 Successfully processed: {successful_collections}/{total_collections} collections")
-    print(f"📁 All results saved in '{output_base_folder}' directory")
-    
+    print(f"PROCESSING COMPLETE!")
+    print(f"Successfully processed: {successful_collections}/{total_collections} collections")
+    print(f"All results saved in '{output_base_folder}' directory")
+
     if successful_collections > 0:
-        print(f"\n📂 Output structure:")
+        print(f"\nOutput structure:")
         for collection in collections:
             output_file = os.path.join(output_base_folder, collection, "challenge1b_output.json")
             if os.path.exists(output_file):
-                print(f"  ✅ {output_base_folder}/{collection}/challenge1b_output.json")
+                print(f"{output_base_folder}/{collection}/challenge1b_output.json")
             else:
-                print(f"  ❌ {output_base_folder}/{collection}/challenge1b_output.json (failed)")
-    
+                print(f"{output_base_folder}/{collection}/challenge1b_output.json (failed)")
+
     print(f"{'='*80}")
 
 
